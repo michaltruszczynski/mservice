@@ -7,14 +7,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 type FormData = {
         firstName: string;
         lastName: string;
-        email?: string;
-        password?: string;
-        confirmPassword?: string;
+        email: string;
+        password: string;
+        confirmPassword: string;
 };
 
 const SigninForm = () => {
         const schema: ZodType<FormData> = z.object({
-                firstName: z.string().min(2).max(15)
+                firstName: z.string().min(2).max(15),
+                lastName: z.string(),
+                email: z.string(),
+                password: z.string(),
+                confirmPassword: z.string()
         })
         const { register, formState: { errors }, control, handleSubmit } = useForm<FormData>({
                 resolver: zodResolver(schema),
@@ -22,7 +26,7 @@ const SigninForm = () => {
 
         });
 
-        const watch = useWatch({control, name: 'firstName'});
+        const watch = useWatch({ control, name: 'firstName' });
         console.log(watch)
 
         const submitHandler = (data: FormData) => {
@@ -37,16 +41,31 @@ const SigninForm = () => {
 
         return (
                 <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
-                        <label htmlFor='firstName'>First Name: </label>
-                        <input id='firstName' type="text"  {...register('firstName')} />
-                        <label htmlFor='lastName'>Last Name: </label>
-                        <input id='lastName' type="text" {...register('lastName')} />
-                        <label htmlFor='email'>Email: </label>
-                        <input id='id' type="email" {...register('email')} />
-                        <label htmlFor='password'>Password</label>
-                        <input id='password' type="password" {...register('password')} />
-                        <label htmlFor='confirmPassword'>Confirm Password</label>
-                        <input id='confirmPassword' type="password" {...register('confirmPassword')} />
+                        <div className={styles['form__field']} >
+                                <label className={styles['form__label']} htmlFor='firstName'>First Name: </label>
+                                <input className={styles['form__input']} id='firstName' type="text"  {...register('firstName')} />
+                                <p className={styles['form__error']}>Error</p>
+                        </div>
+                        <div className={styles['form__field']} >
+                                <label className={styles['form__label']}  htmlFor='lastName'>Last Name: </label>
+                                <input className={styles['form__input']}  id='lastName' type="text" {...register('lastName')} />
+                        </div>
+                        <div className={styles['form__field']} >
+                                <label htmlFor='email'>Email: </label>
+                                <input className={styles['form__input']}  id='id' type="email" {...register('email')} />
+                        </div>
+                        <div className={styles['form__field']} >
+                                <label htmlFor='password'>Password</label>
+                                <input className={styles['form__input']}  id='password' type="password" {...register('password')} />
+                        </div>
+                        <div className={styles['form__field']} >
+                                <label htmlFor='confirmPassword'>Confirm Password</label>
+                                <input className={styles['form__input']}  id='confirmPassword' type="password" {...register('confirmPassword')} />
+                        </div>
+
+
+
+
                         <input type="submit" value={'submit'} />
                 </form>
         )
