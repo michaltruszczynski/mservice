@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import styles from './SigninForm.module.scss';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm, useWatch, FormProvider } from 'react-hook-form';
 import { z, ZodType } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import Input from '../form/Input/Input';
 
 type FormData = {
         firstName: string;
@@ -15,59 +17,34 @@ type FormData = {
 const SigninForm = () => {
         const schema: ZodType<FormData> = z.object({
                 firstName: z.string().min(2).max(15),
-                lastName: z.string(),
-                email: z.string(),
+                lastName: z.string().min(2).max(15),
+                email: z.string().email(),
                 password: z.string(),
                 confirmPassword: z.string()
-        })
-        const { register, formState: { errors }, control, handleSubmit } = useForm<FormData>({
-                resolver: zodResolver(schema),
-                mode: 'onChange'
-
         });
 
-        const watch = useWatch({ control, name: 'firstName' });
-        console.log(watch)
+        const methods = useForm<FormData>({
+                resolver: zodResolver(schema),
+                mode: 'onChange'
+        });
+
+        const { handleSubmit } = methods;
 
         const submitHandler = (data: FormData) => {
-                console.log(data)
+                console.log(data);
         }
 
-        console.log(errors)
-
-        useEffect(() => {
-                console.log('effect')
-        })
-
         return (
-                <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
-                        <div className={styles['form__field']} >
-                                <label className={styles['form__label']} htmlFor='firstName'>First Name: </label>
-                                <input className={styles['form__input']} id='firstName' type="text"  {...register('firstName')} />
-                                <p className={styles['form__error']}>Error</p>
-                        </div>
-                        <div className={styles['form__field']} >
-                                <label className={styles['form__label']}  htmlFor='lastName'>Last Name: </label>
-                                <input className={styles['form__input']}  id='lastName' type="text" {...register('lastName')} />
-                        </div>
-                        <div className={styles['form__field']} >
-                                <label htmlFor='email'>Email: </label>
-                                <input className={styles['form__input']}  id='id' type="email" {...register('email')} />
-                        </div>
-                        <div className={styles['form__field']} >
-                                <label htmlFor='password'>Password</label>
-                                <input className={styles['form__input']}  id='password' type="password" {...register('password')} />
-                        </div>
-                        <div className={styles['form__field']} >
-                                <label htmlFor='confirmPassword'>Confirm Password</label>
-                                <input className={styles['form__input']}  id='confirmPassword' type="password" {...register('confirmPassword')} />
-                        </div>
-
-
-
-
-                        <input type="submit" value={'submit'} />
-                </form>
+                <FormProvider {...methods}>
+                        <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+                                <Input type={"firstName"} name={"firstName"} label={"First Name"} />
+                                <Input type={"lastName"} name={"lastName"} label={"Last Name"} />
+                                <Input type={"email"} name={"email"} label={"Email"} />
+                                <Input type={"password"} name={"password"} label={"Password"} />
+                                <Input type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
+                                <input type="submit" value={'submit'} />
+                        </form>
+                </FormProvider>
         )
 }
 
