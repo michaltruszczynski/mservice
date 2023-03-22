@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './SigninForm.module.scss';
-import { useForm, useWatch, FormProvider } from 'react-hook-form';
+import { useForm, useWatch, FormProvider, SubmitHandler } from 'react-hook-form';
 import { z, ZodType } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -30,7 +30,7 @@ const SigninForm = () => {
 
         const { handleSubmit } = methods;
 
-        const submitHandler = (data: FormData) => {
+        const submitHandler: SubmitHandler<FormData> = (data) => {
                 console.log(data);
         }
 
