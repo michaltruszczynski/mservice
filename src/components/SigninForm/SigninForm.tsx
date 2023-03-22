@@ -25,7 +25,7 @@ const SigninForm = () => {
 
         const methods = useForm<FormData>({
                 resolver: zodResolver(schema),
-                mode: 'onChange'
+                // mode: 'onChange'
         });
 
         const { handleSubmit } = methods;
