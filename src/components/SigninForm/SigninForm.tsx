@@ -38,7 +38,7 @@ const SigninForm = () => {
                 <FormProvider {...methods}>
                         <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
                                 <Input type={"firstName"} name={"firstName"} label={"First Name"} />
-                                <Input type={"lastName"} name={"lastName"} label={"Last Name"} />
+                                {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
                                 <Input type={"email"} name={"email"} label={"Email"} />
                                 <Input type={"password"} name={"password"} label={"Password"} />
                                 <Input type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />

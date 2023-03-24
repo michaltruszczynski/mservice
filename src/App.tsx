@@ -1,12 +1,12 @@
-import './App.css'
+import Layout from './components/Layout/Layout'
 import SigninForm from './components/SigninForm/SigninForm'
 
 function App() {
 
   return (
-    <div className="App">
+    <Layout>
       <SigninForm />
-    </div>
+    </Layout>
   )
 }
 
