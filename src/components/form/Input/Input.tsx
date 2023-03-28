@@ -11,10 +11,10 @@ type InputPropsType = {
 
 const Input = ({ type, name, label }: InputPropsType) => {
         const { register, control } = useFormContext();
-        const {errors} = useFormState({name, control})
+        const {isDirty, isValid, errors} = useFormState({name, control})
         // const errors = useWatch({name})
         // console.log(errors)
-        console.log(errors)
+        console.log(isDirty, errors)
 
         return (
                 <div className={styles['field']} >

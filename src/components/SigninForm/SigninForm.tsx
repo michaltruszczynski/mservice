@@ -24,8 +24,13 @@ const SigninForm = () => {
         });
 
         const methods = useForm<FormData>({
-                resolver: zodResolver(schema),
-                // mode: 'onChange'
+                defaultValues: {
+                        firstName: "",
+                        email: "",
+                        password: "",
+                        confirmPassword: ""
+                },
+                resolver: zodResolver(schema)
         });
 
         const { handleSubmit } = methods;
@@ -35,8 +40,10 @@ const SigninForm = () => {
         }
 
         return (
+
                 <FormProvider {...methods}>
-                        <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+                        <form className={styles['form']} onSubmit={handleSubmit(submitHandler)}>
+
                                 <Input type={"firstName"} name={"firstName"} label={"First Name"} />
                                 {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
                                 <Input type={"email"} name={"email"} label={"Email"} />
@@ -45,6 +52,7 @@ const SigninForm = () => {
                                 <input type="submit" value={'submit'} />
                         </form>
                 </FormProvider>
+
         )
 }
 

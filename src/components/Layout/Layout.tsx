@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import Navigation from '../Navigation/Navigation';
 
 import styles from './Layout.module.scss';
 
@@ -8,15 +9,15 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
 
-        return (<>
-                <header>
-                </header>
-                <main className={styles['container']}>
-                        {children}
-                </main>
-                <footer>
-                </footer>
-        </>
+        return (
+                <>
+                        <Navigation />
+                        <main className={styles['container']}>
+                                {children}
+                        </main>
+                        <footer>
+                        </footer>
+                </>
         )
 
 }
