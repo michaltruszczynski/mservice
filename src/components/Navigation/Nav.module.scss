@@ -1,0 +1,305 @@
+$bodyColor: #e4e9f7;
+$sidebarColor: #fff;
+$primaryColor: #695cfe;
+$primaryColorLight: #f6f5ff;
+$toggleColor: #ddd;
+$textColor: #707070;
+
+$transition02: all 0.2s ease;
+$transition03: all 0.3s ease;
+$transition04: all 0.4s ease;
+$transition05: all 0.35s ease;
+
+body.dark {
+        --body-color: #18191a;
+        --sidebar-color: #242526;
+        --primary-color: #3a3b3c;
+        --primary-color-light: #3a3b3c;
+        --toggle-color: #fff;
+        --text-color: #ccc;
+}
+
+// transition dla body balck 2
+
+// Sidebar
+
+.sidebar {
+        position: fixed;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        height: 100%;
+        // width: 250px;
+        padding: 10px 14px;
+        background-color: $sidebarColor;
+        transition: $transition05;
+        z-index: 100;
+        // overflow-y: auto;
+        // overflow-x: auto;
+
+        &--close {
+                width: 88px;
+
+                .header__text {
+                        opacity: 0;
+                }
+        }
+}
+
+.header {
+        position: relative;
+
+        &__content {
+                display: flex;
+                align-items: center;
+        }
+
+        &__logo {
+                min-width: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &__image {
+                        width: 40px;
+                        border-radius: 6px;
+                }
+        }
+
+        &__text {
+                font-weight: 500;
+                font-size: 1rem;
+                color: $textColor;
+                transition: $transition03;
+                white-space: nowrap;
+                opacity: 1;
+                display: flex;
+                flex-direction: column;
+
+                &__heading1 {
+                        font-weight: 600;
+                }
+
+                &__heading2 {
+                        margin-top: -2px;
+                }
+        }
+}
+
+// Resuable CSS
+// .sidebar.close {
+//         width: 88px;
+// }
+
+// .sidebar.close .text {
+
+// }
+
+.sidebar li .icon,
+.sidebar li .text {
+        color: $textColor;
+        transition: $transition02;
+}
+/////
+
+.sidebar header .toggle {
+        position: absolute;
+        top: 50%;
+        right: -28px;
+        transform: translateY(-50%) rotate(180deg);
+        height: 28px;
+        width: 28px;
+        background-color: $primaryColor;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: $sidebarColor;
+        font-size: 22px;
+        transition: $transition03;
+}
+
+.sidebar.close header .toggle {
+        transform: translateY(-50%);
+}
+
+body.dark .sidebar header .toggle {
+        color: $textColor;
+}
+//////////////////////////
+
+.menu {
+        margin-top: 35px;
+        // background-color: red;
+        height: calc(100% - 50px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+}
+
+.nav {
+        &__items {
+        }
+
+        &__item {
+                height: 50px;
+                // background-color: red;
+                margin-top: 10px;
+                list-style: none;
+                display: flex;
+                align-items: center;
+        }
+
+        .link {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                border-radius: 6px;
+                transition: $transition04;
+
+                &:hover {
+                        background-color: $primaryColor;
+                        color: $sidebarColor;
+                }
+                &__text {
+                        color: $textColor;
+                        transition: $transition02;
+                        &:hover {
+                                color: $sidebarColor;
+                        }
+                }
+        }
+
+        .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 60px;
+                font-size: 20px;
+                color: inherit;
+                transition: $transition02;
+
+                // &:hover {
+                //         color: $sidebarColor;
+                // }
+        }
+}
+
+// .sidebar .search-box {
+//         background-color: $primaryColorLight;
+//         border-radius: 6px;
+// }
+
+// .search-box input {
+//         height: 100%;
+//         width: 100%;
+//         outline: none;
+//         border: none;
+//         border-radius: 6px;
+//         font-size: 1rem;
+//         font-weight: 500;
+//         background-color: $primaryColorLight;
+//         transition: $transition05;
+// }
+
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text {
+        color: $textColor;
+}
+
+.menu-bar .mode {
+        position: relative;
+        border-radius: 6px;
+        background-color: $primaryColorLight;
+}
+
+.menu-bar .mode .moon-sun {
+        height: 50px;
+        width: 60px;
+        display: flex;
+        align-items: center;
+}
+
+.menu-bar .mode i {
+        position: absolute;
+        transition: $transition03;
+}
+
+.menu-bar .mode i.sun {
+        opacity: 0;
+}
+
+body.dark .menu-bar .mode i.sun {
+        opacity: 1;
+}
+
+body.dark .menu-bar .mode i.moon {
+        opacity: 0;
+}
+
+.menu-bar .mode .toggle-switch {
+        position: absolute;
+        right: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        min-width: 60px;
+        cursor: pointer;
+        background-color: $primaryColorLight;
+        border-radius: 6px;
+        transition: $transition05;
+        // background-color: red;
+}
+
+.toggle-switch .switch {
+        position: relative;
+        height: 22px;
+        width: 44px;
+        border-radius: 25px;
+        background-color: $toggleColor;
+        transition: $transition05;
+}
+
+.switch::before {
+        content: "";
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        background-color: $sidebarColor;
+        transition: $transition03;
+}
+
+body.dark .switch::before {
+        left: 24px;
+}
+
+.home {
+        position: relative;
+        left: 88px;
+        height: 100vh;
+        width: calc(100% - 88px);
+        background-color: red;
+}
+
+.home .text {
+        font-size: 30px;
+        font-weight: 500;
+        color: var(--text-color);
+        padding: 12px 60px;
+}
+
+.sidebar.close ~ .home {
+        left: 78px;
+        height: 100vh;
+        width: calc(100% - 78px);
+}
+body.dark .home .text {
+        color: $textColor;
+}

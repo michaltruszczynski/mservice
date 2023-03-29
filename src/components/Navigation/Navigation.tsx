@@ -5,7 +5,7 @@ import "./Navigation.scss";
 
 const Navigation = () => {
         return (<>
-                <nav className="sidebar close">
+                <nav className="sidebar">
                         {/* <i className='bx bx-chevron-right toggle'></i> */}
                         <header>
                                 <div className="image-text">
@@ -21,12 +21,12 @@ const Navigation = () => {
                         </header>
                         <div className='menu-bar'>
                                 <div className="men">
-                                        {/* <li className="search-box">
+                                        <li className="search-box">
                                                 <a href="#" >
                                                         <i className='bx bx-search icon'></i>
                                                         <input type="search" placeholder='Search..' />
                                                 </a>
-                                        </li> */}
+                                        </li>
                                         <ul className="menu-links">
                                                 <li className="nav-link">
                                                         <a href="#" >
