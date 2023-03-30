@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import logo from "../../images/logo.png"
 
-import styles from  "./Nav.module.scss";
+import styles from "./Nav.module.scss";
 
 const cx = classNames.bind(styles);
 
 const Navigation = () => {
+        const [darkMode, setDarkMode] = useState(false);
+
+        const darkModeHandler = () => {
+                console.log('test')
+                console.log(darkMode)
+                setDarkMode(prevState => !prevState)
+        }
+
         return (
                 <>
-                        <nav className={cx('sidebar', {'sidebar--close': false})} >
+                        <nav className={cx('sidebar', { 'sidebar--close': false })} >
                                 {/* <i className='bx bx-chevron-right toggle'></i> */}
                                 <header className={cx('header')}>
                                         <div className={cx('header__content')}>
@@ -33,62 +41,66 @@ const Navigation = () => {
                                                 </li> */}
                                                 <ul className={cx('nav__items')}>
                                                         <li className={cx('nav__item')}>
-                                                                <a href="#"  className={cx('link')}>
+                                                                <a href="#" className={cx('link')}>
                                                                         <i className={`bx bx-home-alt ${cx('icon')}`}></i>
                                                                         <span className={cx('link__text')}>Dashboard</span>
                                                                 </a>
                                                         </li>
-                                                        <li className="nav-link">
-                                                                <a href="#" >
-                                                                        <i className='bx bx-bar-chart-alt-2 icon'></i>
-                                                                        <span className="text nav-text">Revenue</span>
+                                                        <li className={cx('nav__item')}>
+                                                                <a href="#" className={cx('link')}>
+                                                                        <i className={`bx bx-bar-chart-alt-2 ${cx('icon')}`}></i>
+                                                                        <span className={cx('link__text')}>Revenue</span>
                                                                 </a>
                                                         </li>
-                                                        <li className="nav-link">
-                                                                <a href="#" >
-                                                                        <i className='bx bx-bell icon'></i>
-                                                                        <span className="text nav-text">Notification</span>
+                                                        <li className={cx('nav__item')}>
+                                                                <a href="#" className={cx('link')}>
+                                                                        <i className={`bx bx-bell ${cx('icon')}`}></i>
+                                                                        <span className={cx('link__text')}>Notification</span>
                                                                 </a>
                                                         </li>
-                                                        <li className="nav-link">
-                                                                <a href="#" >
-                                                                        <i className='bx bx-pie-chart-alt icon'></i>
-                                                                        <span className="text nav-text">Analitics</span>
+                                                        <li className={cx('nav__item')}>
+                                                                <a href="#" className={cx('link')}>
+                                                                        <i className={`bx bx-pie-chart-alt ${cx('icon')}`}></i>
+                                                                        <span className={cx('link__text')}>Analitics</span>
                                                                 </a>
                                                         </li>
-                                                        <li className="nav-link">
-                                                                <a href="#" >
-                                                                        <i className='bx bx-heart icon'></i>
-                                                                        <span className="text nav-text">Likes</span>
+                                                        <li className={cx('nav__item')}>
+                                                                <a href="#" className={cx('link')}>
+                                                                        <i className={`bx bx-heart ${cx('icon')}`}></i>
+                                                                        <span className={cx('link__text')}>Likes</span>
                                                                 </a>
                                                         </li>
-                                                        <li className="nav-link">
-                                                                <a href="#" >
-                                                                        <i className='bx bx-wallet icon'></i>
-                                                                        <span className="text nav-text">Wallets</span>
+                                                        <li className={cx('nav__item')}>
+                                                                <a href="#" className={cx('link')}>
+                                                                        <i className={`bx bx-wallet ${cx('icon')}`}></i>
+                                                                        <span className={cx('link__text')}>Wallets</span>
                                                                 </a>
                                                         </li>
                                                 </ul>
                                         </div>
-                                        <div className="bottom-content">
-                                                <li className="nav-link">
-                                                        <a href="#" >
-                                                                <i className='bx bx-log-out icon'></i>
-                                                                <span className="text nav-text">Logout</span>
-                                                        </a>
-                                                </li>
-                                                <li className="mode">
-                                                        <div className="moon-sun">
-                                                                <i className='bx bx-moon icon moon'></i>
-                                                                <i className='bx bx-sun icon sun'></i>
-                                                        </div>
-                                                        <span className="mode-text text">Dark Mode</span>
-                                                        <div className="toggle-switch">
-                                                                <span className="switch">
+                                        <div className={cx('bottom')}>
+                                                <ul className={cx('bottom__content')}>
+                                                        <li className={cx('nav__item')}>
+                                                                <a href="#" className={cx('link')}>
+                                                                        <i className={`bx bx-log-out ${cx('icon')}`}></i>
+                                                                        <span className={cx('link__text')}>Logout</span>
+                                                                </a>
+                                                        </li>
+                                                        <li className={cx('mode')}>
+                                                                <div className={cx('moon-sun')}>
+                                                                        <i className={`bx bx-moon ${cx('icon-mode', { 'moon': darkMode })}`}></i>
+                                                                        <i className={`bx bx-sun ${cx('icon-mode', { 'sun': !darkMode })}`}></i>
+                                                                </div>
+                                                                <span className={cx('mode__text')}>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                                                                <div className={cx('toggle-switch')}>
+                                                                        <label className={cx('toggle-switch__label')} htmlFor="ts">
+                                                                                <input type="checkbox" className={cx('toggle-switch__checkbox')} name="ts" id="ts" checked={darkMode} onChange={darkModeHandler} />
+                                                                                <span className={cx('toggle-switch__button')} />
+                                                                        </label>
+                                                                </div>
 
-                                                                </span>
-                                                        </div>
-                                                </li>
+                                                        </li>
+                                                </ul>
                                         </div>
                                 </div>
                         </nav>

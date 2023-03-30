@@ -28,12 +28,14 @@ body.dark {
         box-sizing: border-box;
         top: 0;
         left: 0;
-        height: 100%;
+        height: 100vh;
         // width: 250px;
         padding: 10px 14px;
         background-color: $sidebarColor;
         transition: $transition05;
         z-index: 100;
+        display: flex;
+        flex-direction: column;
         // overflow-y: auto;
         // overflow-x: auto;
 
@@ -87,20 +89,6 @@ body.dark {
 }
 
 // Resuable CSS
-// .sidebar.close {
-//         width: 88px;
-// }
-
-// .sidebar.close .text {
-
-// }
-
-.sidebar li .icon,
-.sidebar li .text {
-        color: $textColor;
-        transition: $transition02;
-}
-/////
 
 .sidebar header .toggle {
         position: absolute;
@@ -130,11 +118,10 @@ body.dark .sidebar header .toggle {
 
 .menu {
         margin-top: 35px;
-        // background-color: red;
-        height: calc(100% - 50px);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        flex-grow: 1;
 }
 
 .nav {
@@ -143,47 +130,42 @@ body.dark .sidebar header .toggle {
 
         &__item {
                 height: 50px;
-                // background-color: red;
                 margin-top: 10px;
                 list-style: none;
                 display: flex;
                 align-items: center;
-        }
 
-        .link {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                text-decoration: none;
-                border-radius: 6px;
-                transition: $transition04;
-
-                &:hover {
-                        background-color: $primaryColor;
-                        color: $sidebarColor;
-                }
-                &__text {
-                        color: $textColor;
+                .link {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        text-decoration: none;
+                        border-radius: 6px;
                         transition: $transition02;
+                        color: $textColor;
+
                         &:hover {
+                                background-color: $primaryColor;
                                 color: $sidebarColor;
                         }
+                        &__text {
+                                color: inherit;
+                                font-weight: 500;
+                                font-size: 1rem;
+                                white-space: nowrap;
+                        }
+
+                        .icon {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                min-width: 60px;
+                                font-size: 20px;
+                                font-weight: 400;
+                                color: inherit;
+                        }
                 }
-        }
-
-        .icon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-width: 60px;
-                font-size: 20px;
-                color: inherit;
-                transition: $transition02;
-
-                // &:hover {
-                //         color: $sidebarColor;
-                // }
         }
 }
 
@@ -209,76 +191,117 @@ body.dark .sidebar li a:hover .text {
         color: $textColor;
 }
 
-.menu-bar .mode {
+/////
+
+.bottom {
+        &__content {
+                list-style: none;
+                color: $textColor;
+        }
+}
+
+.mode {
         position: relative;
         border-radius: 6px;
         background-color: $primaryColorLight;
-}
-
-.menu-bar .mode .moon-sun {
-        height: 50px;
-        width: 60px;
+        color: $textColor;
         display: flex;
         align-items: center;
+
+        .moon-sun {
+                height: 50px;
+                width: 60px;
+                display: flex;
+                align-items: center;
+        }
+
+        .icon-mode {
+                position: absolute;
+                transition: $transition03;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 60px;
+                font-size: 20px;
+                font-weight: 400;
+                color: inherit;
+        }
+
+        .sun {
+                opacity: 0;
+        }
+
+        .moon {
+                opacity: 0;
+        }
+
+        &__text {
+                font-size: 1rem;
+                font-weight: 500;
+                white-space: nowrap;
+                color: inherit;
+        }
 }
 
-.menu-bar .mode i {
-        position: absolute;
-        transition: $transition03;
+// body.dark .mode i.sun {
+//         opacity: 1;
+// }
+
+// body.dark .mode i.moon {
+//         opacity: 0;
+// }
+
+.toggle-switch {
+        $this: &;
+
+        &__checkbox {
+                display: none;
+
+                &:checked + #{$this}__button {
+                        &:before {
+                                left: 24px;
+                        }
+                }
+        }
+
+        &__label {
+                display: block;
+                overflow: hidden;
+                width: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+        }
+
+        &__button {
+                position: relative;
+                display: block;
+                height: 22px;
+                width: 44px;
+                border-radius: 25px;
+                background-color: $toggleColor;
+                transition: $transition05;
+
+                &:before {
+                        content: "";
+                        position: absolute;
+                        height: 15px;
+                        width: 15px;
+                        border-radius: 50%;
+                        top: 50%;
+                        left: 5px;
+                        transform: translateY(-50%);
+                        background-color: $sidebarColor;
+                        transition: $transition03;
+                }
+
+        }
 }
 
-.menu-bar .mode i.sun {
-        opacity: 0;
-}
 
-body.dark .menu-bar .mode i.sun {
-        opacity: 1;
-}
 
-body.dark .menu-bar .mode i.moon {
-        opacity: 0;
-}
-
-.menu-bar .mode .toggle-switch {
-        position: absolute;
-        right: 0px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        min-width: 60px;
-        cursor: pointer;
-        background-color: $primaryColorLight;
-        border-radius: 6px;
-        transition: $transition05;
-        // background-color: red;
-}
-
-.toggle-switch .switch {
-        position: relative;
-        height: 22px;
-        width: 44px;
-        border-radius: 25px;
-        background-color: $toggleColor;
-        transition: $transition05;
-}
-
-.switch::before {
-        content: "";
-        position: absolute;
-        height: 15px;
-        width: 15px;
-        border-radius: 50%;
-        top: 50%;
-        left: 5px;
-        transform: translateY(-50%);
-        background-color: $sidebarColor;
-        transition: $transition03;
-}
-
-body.dark .switch::before {
-        left: 24px;
-}
+/// main layout
 
 .home {
         position: relative;

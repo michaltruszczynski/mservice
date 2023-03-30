@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-// import Navigation from '../Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import Nav from '../Navigation/Nav';
 
 import styles from './Layout.module.scss';
@@ -12,6 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
 
         return (
                 <>
+                        {/* <Navigation /> */}
                         <Nav />
                         <main className={styles['container']}>
                                 {children}
