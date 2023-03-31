@@ -8,7 +8,7 @@ $textColor: #707070;
 $transition02: all 0.2s ease;
 $transition03: all 0.3s ease;
 $transition04: all 0.4s ease;
-$transition05: all 0.35s ease;
+$transition05: all 0.5s ease;
 
 body.dark {
         --body-color: #18191a;
@@ -29,20 +29,48 @@ body.dark {
         top: 0;
         left: 0;
         height: 100vh;
-        // width: 250px;
+        width: 250px;
         padding: 10px 14px;
-        background-color: $sidebarColor;
-        transition: $transition05;
+        background-color: $sidebarColor; //$sidebarColor
+        transition: $transition05; 
         z-index: 100;
         display: flex;
         flex-direction: column;
-        // overflow-y: auto;
-        // overflow-x: auto;
+
+        .toggle {
+                position: absolute;
+                top: 4%;
+                right: -15px;
+                transform: translateY(-50%) rotate(180deg);
+                height: 28px;
+                width: 28px;
+                background-color: $primaryColor; //
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                color: $sidebarColor;
+                font-size: 22px;
+                transition: transform $transition05;
+                cursor: pointer;
+
+                &--rotate {
+                        transform: translateY(-50%);
+                }
+        }
 
         &--close {
                 width: 88px;
+                transition: $transition05;
 
                 .header__text {
+                        opacity: 0;
+                        z-index: -1;
+                }
+
+                .link__text {
+                        position: relative;
+                        z-index: -1;
                         opacity: 0;
                 }
         }
@@ -69,6 +97,7 @@ body.dark {
         }
 
         &__text {
+                position: relative;
                 font-weight: 500;
                 font-size: 1rem;
                 color: $textColor;
@@ -88,34 +117,6 @@ body.dark {
         }
 }
 
-// Resuable CSS
-
-.sidebar header .toggle {
-        position: absolute;
-        top: 50%;
-        right: -28px;
-        transform: translateY(-50%) rotate(180deg);
-        height: 28px;
-        width: 28px;
-        background-color: $primaryColor;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        color: $sidebarColor;
-        font-size: 22px;
-        transition: $transition03;
-}
-
-.sidebar.close header .toggle {
-        transform: translateY(-50%);
-}
-
-body.dark .sidebar header .toggle {
-        color: $textColor;
-}
-//////////////////////////
-
 .menu {
         margin-top: 35px;
         display: flex;
@@ -126,6 +127,7 @@ body.dark .sidebar header .toggle {
 
 .nav {
         &__items {
+                overflow: hidden;
         }
 
         &__item {
@@ -142,7 +144,7 @@ body.dark .sidebar header .toggle {
                         align-items: center;
                         text-decoration: none;
                         border-radius: 6px;
-                        transition: $transition02;
+                        transition: $transition03;
                         color: $textColor;
 
                         &:hover {
@@ -169,30 +171,6 @@ body.dark .sidebar header .toggle {
         }
 }
 
-// .sidebar .search-box {
-//         background-color: $primaryColorLight;
-//         border-radius: 6px;
-// }
-
-// .search-box input {
-//         height: 100%;
-//         width: 100%;
-//         outline: none;
-//         border: none;
-//         border-radius: 6px;
-//         font-size: 1rem;
-//         font-weight: 500;
-//         background-color: $primaryColorLight;
-//         transition: $transition05;
-// }
-
-body.dark .sidebar li a:hover .icon,
-body.dark .sidebar li a:hover .text {
-        color: $textColor;
-}
-
-/////
-
 .bottom {
         &__content {
                 list-style: none;
@@ -213,6 +191,11 @@ body.dark .sidebar li a:hover .text {
                 width: 60px;
                 display: flex;
                 align-items: center;
+                transition: $transition03;
+                &--hide {
+                        opacity: 0;
+                        visibility: hidden;
+                }
         }
 
         .icon-mode {
@@ -240,19 +223,25 @@ body.dark .sidebar li a:hover .text {
                 font-weight: 500;
                 white-space: nowrap;
                 color: inherit;
+
+                &--hide {
+                        opacity: 0;
+                        transition: $transition03;
+                }
         }
 }
 
-// body.dark .mode i.sun {
-//         opacity: 1;
-// }
-
-// body.dark .mode i.moon {
-//         opacity: 0;
-// }
-
 .toggle-switch {
         $this: &;
+
+        transition: $transition05;
+        position: absolute;
+        right: 0;
+
+        &--left {
+                transition: $transition05;
+                position: absolute;
+        }
 
         &__checkbox {
                 display: none;
@@ -295,20 +284,25 @@ body.dark .sidebar li a:hover .text {
                         background-color: $sidebarColor;
                         transition: $transition03;
                 }
-
         }
 }
-
-
 
 /// main layout
 
 .home {
         position: relative;
-        left: 88px;
+        left: 250px;
         height: 100vh;
-        width: calc(100% - 88px);
+        top: 0;
+        width: calc(100% - 250px);
         background-color: red;
+        transition: $transition05;
+
+        &--close {
+                left: 78px;
+                height: 100vh;
+                width: calc(100% - 78px);
+        }
 }
 
 .home .text {
@@ -318,11 +312,6 @@ body.dark .sidebar li a:hover .text {
         padding: 12px 60px;
 }
 
-.sidebar.close ~ .home {
-        left: 78px;
-        height: 100vh;
-        width: calc(100% - 78px);
-}
 body.dark .home .text {
         color: $textColor;
 }
