@@ -21,7 +21,7 @@ const Navigation = () => {
 
         return (
                 <>
-                        <nav className={cx('sidebar', { 'sidebar--close': !openNav })} >
+                        <nav className={cx('sidebar', { 'sidebar--close': !openNav, 'sidebar--dark': darkMode })} >
                         <i  className={`bx bx-chevron-right ${cx('toggle', {'toggle--rotate': !openNav})}`} onClick={openNavHandler}></i>
                                 <header className={cx('header')}>
                                         <div className={cx('header__content')}>
