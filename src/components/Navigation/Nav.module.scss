@@ -16,7 +16,9 @@ $primaryColorDark: #3a3b3c;
 $primaryColorLightDark: #3a3b3c;
 $toggleColorDark: #fff;
 $textColorDark: #ccc;
-// Sidebar
+
+// Si
+
 
 .sidebar {
         position: fixed;
@@ -32,9 +34,11 @@ $textColorDark: #ccc;
         display: flex;
         flex-direction: column;
 
+
         &--dark {
                 // background-color: $sidebarColorDark;
-                $sidebarColor: $sidebarColorDark;
+                // $sidebarColor: $sidebarColorDark;
+
                 position: fixed;
                 box-sizing: border-box;
                 top: 0;
@@ -69,6 +73,7 @@ $textColorDark: #ccc;
                 &--rotate {
                         transform: translateY(-50%);
                 }
+
                 &--dark {
                         background-color: $primaryColorDark;
                         color: $sidebarColorDark;
@@ -163,10 +168,15 @@ $textColorDark: #ccc;
                         transition: $transition03;
                         color: $textColor;
 
+                        &--dark {
+                                color: $textColor;
+                        }
+
                         &:hover {
                                 background-color: $primaryColor;
                                 color: $sidebarColor;
                         }
+
                         &__text {
                                 color: inherit;
                                 font-weight: 500;
@@ -208,6 +218,7 @@ $textColorDark: #ccc;
                 display: flex;
                 align-items: center;
                 transition: $transition03;
+
                 &--hide {
                         opacity: 0;
                         visibility: hidden;
@@ -262,7 +273,7 @@ $textColorDark: #ccc;
         &__checkbox {
                 display: none;
 
-                &:checked + #{$this}__button {
+                &:checked+#{$this}__button {
                         &:before {
                                 left: 24px;
                         }

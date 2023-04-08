@@ -22,7 +22,7 @@ const Navigation = () => {
         return (
                 <>
                         <nav className={cx('sidebar', { 'sidebar--close': !openNav, 'sidebar--dark': darkMode })} >
-                        <i  className={`bx bx-chevron-right ${cx('toggle', {'toggle--rotate': !openNav})}`} onClick={openNavHandler}></i>
+                                <i className={`bx bx-chevron-right ${cx('toggle', { 'toggle--rotate': !openNav })}`} onClick={openNavHandler}></i>
                                 <header className={cx('header')}>
                                         <div className={cx('header__content')}>
                                                 <span className={cx('header__logo')}>
@@ -33,7 +33,7 @@ const Navigation = () => {
                                                         <span className={cx('header__text__heading1')}>Utility Management</span>
                                                 </div>
                                         </div>
-                                        
+
                                 </header>
                                 <div className={cx('menu')}>
                                         <div className={cx('nav')}>
@@ -91,12 +91,12 @@ const Navigation = () => {
                                                                 </a>
                                                         </li>
                                                         <li className={cx('mode')}>
-                                                                <div className={cx('moon-sun', {'moon-sun--hide' : !openNav})}>
+                                                                <div className={cx('moon-sun', { 'moon-sun--hide': !openNav })}>
                                                                         <i className={`bx bx-moon ${cx('icon-mode', { 'moon': darkMode })}`}></i>
                                                                         <i className={`bx bx-sun ${cx('icon-mode', { 'sun': !darkMode })}`}></i>
                                                                 </div>
-                                                                <span className={cx('mode__text', {'mode__text--hide': !openNav})}>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
-                                                                <div className={cx('toggle-switch',  {'toggle-switch--left' : !openNav})}>
+                                                                <span className={cx('mode__text', { 'mode__text--hide': !openNav })}>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                                                                <div className={cx('toggle-switch', { 'toggle-switch--left': !openNav })}>
                                                                         <label className={cx('toggle-switch__label')} htmlFor="ts">
                                                                                 <input type="checkbox" className={cx('toggle-switch__checkbox')} name="ts" id="ts" checked={darkMode} onChange={darkModeHandler} />
                                                                                 <span className={cx('toggle-switch__button')} />
@@ -108,7 +108,7 @@ const Navigation = () => {
                                         </div>
                                 </div>
                         </nav>
-                        <section className={cx('home', {'home--close': !openNav})}>
+                        <section className={cx('home', { 'home--close': !openNav })}>
                                 <div className="text">Dashboard</div>
                         </section>
                 </>
