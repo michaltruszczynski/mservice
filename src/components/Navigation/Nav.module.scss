@@ -27,7 +27,7 @@ $textColorDark: #ccc;
         left: 0;
         height: 100vh;
         width: 250px;
-        padding: 10px 14px;
+
         background-color: $sidebarColor; //$sidebarColor
         transition: $transition05;
         z-index: 100;
@@ -98,6 +98,7 @@ $textColorDark: #ccc;
 
 .header {
         position: relative;
+        padding: 10px 14px;
 
         &__content {
                 display: flex;
@@ -144,6 +145,18 @@ $textColorDark: #ccc;
         justify-content: space-between;
         flex-grow: 1;
         overflow-y: auto;
+        scrollbar-color: yellow;
+
+        &::-webkit-scrollbar {
+                width: 12px;
+                background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: #555;
+        }
 }
 
 .nav {
