@@ -145,6 +145,7 @@ $textColorDark: #ccc;
         justify-content: space-between;
         flex-grow: 1;
         overflow-y: auto;
+        overflow-x: hidden;
         scrollbar-color: yellow;
 
         &::-webkit-scrollbar {
