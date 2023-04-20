@@ -5,12 +5,13 @@ import logo from "../../images/logo.png"
 import styles from "./Nav.module.scss";
 
 type NavigationProps = {
-    onNavControlerClick: () => void
+    setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    isNavOpen: boolean
 }
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({onNavControlerClick}: NavigationProps) => {
+const Navigation = ({setIsNavOpen, isNavOpen}: NavigationProps) => {
     const [darkMode, setDarkMode] = useState<boolean>(false);
     const [openNav, setOpenNav] = useState<boolean>(true);
 
@@ -18,16 +19,16 @@ const Navigation = ({onNavControlerClick}: NavigationProps) => {
         setDarkMode(prevState => !prevState)
     }
 
-    const openNavHandler: React.MouseEvent<HTMLElement, MouseEvent> = () => {
+    const toggleClickHandler: React.MouseEventHandler<HTMLElement> = () => {
         console.log(openNav)
-        setOpenNav(prevState => !prevState)
+        setIsNavOpen(!isNavOpen)
     }
 
     return (
         <>
             <nav className={cx('sidebar', { 'sidebar--close': !openNav, 'sidebar--dark': darkMode })} >
            
-                <i className={`bx bx-chevron-right ${cx('toggle', { 'toggle--rotate': !openNav })}`} onClick={e => console.log(e)}></i>
+                <i className={`bx bx-chevron-right ${cx('toggle', { 'toggle--rotate': !openNav })}`} onClick={toggleClickHandler}></i>
           
                 <header className={cx('header')}>
                     <div className={cx('header__content')}>

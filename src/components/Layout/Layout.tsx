@@ -10,16 +10,12 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
 
-    const [isNavOpen, setIsNavOpen] = useState(true)
-
-    const openNavHandler = () => {
-        setIsNavOpen(prevState => !prevState)
-    }
+    const [isNavOpen, setIsNavOpen] = useState<boolean>(true)
 
     return (
         <>
             {/* <Navigation /> */}
-            <Nav onNavControlerClick={openNavHandler} />
+            <Nav onToggleClick={setIsNavOpen} isNavOpen={isNavOpen} />
             <main className={styles['container']}>
                 {children}
             </main>
