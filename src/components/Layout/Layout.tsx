@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
     return (
         <>
             {/* <Navigation /> */}
-            <Nav onToggleClick={setIsNavOpen} isNavOpen={isNavOpen} />
+            <Nav setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen} />
             <main className={styles['container']}>
                 {children}
             </main>
