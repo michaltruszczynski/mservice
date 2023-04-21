@@ -13,15 +13,17 @@ const Layout = ({ children }: LayoutProps) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(true)
 
     return (
-        <>
+        <div>
             {/* <Navigation /> */}
-            <Nav setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen} />
-            <main className={styles['container']}>
-                {children}
-            </main>
+            <div>
+                <Nav setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen} />
+                <main className={styles['container']}>
+                    {children}
+                </main>
+            </div>
             <footer>
             </footer>
-        </>
+        </div>
     )
 
 }
