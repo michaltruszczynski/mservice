@@ -20,8 +20,11 @@ const Navigation = ({setIsNavOpen, isNavOpen}: NavigationProps) => {
     }
 
     const toggleClickHandler: React.MouseEventHandler<HTMLElement> = () => {
-        console.log(openNav)
         setIsNavOpen(!isNavOpen)
+    }
+
+    const closeNav = () => {
+        setIsNavOpen(false)
     }
 
     return (
