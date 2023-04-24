@@ -13,7 +13,6 @@ const cx = classNames.bind(styles);
 
 const Navigation = ({setIsNavOpen, isNavOpen}: NavigationProps) => {
     const [darkMode, setDarkMode] = useState<boolean>(false);
-    const [openNav, setOpenNav] = useState<boolean>(true);
 
     const darkModeHandler = () => {
         setDarkMode(prevState => !prevState)
@@ -25,6 +24,10 @@ const Navigation = ({setIsNavOpen, isNavOpen}: NavigationProps) => {
 
     const closeNav = () => {
         setIsNavOpen(false)
+    }
+
+    const openNav = () => {
+        setIsNavOpen(true
     }
 
     return (
