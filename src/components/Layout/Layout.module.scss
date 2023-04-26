@@ -1,7 +1,35 @@
+$transition05: all 0.5s ease;
+
 .container {
         max-width: 1024px;
         margin: 0 auto;
         min-height: 100%;
-        height: 100%;
-        background-color: #E4E9f7;
+        // height: 100%;
+        // background-color: #E4E9f7;
+        background-color: red;
+}
+
+
+.home {
+    position: relative;
+    left: 250px;
+    // height: 100vh;
+    // height: 100%;
+    top: 0;
+    width: calc(100% - 250px);
+    
+    transition: $transition05;
+
+    &--close {
+            left: 78px;
+            // height: 100vh;
+            width: calc(100% - 78px);
+    }
+}
+
+.home .text {
+    font-size: 30px;
+    font-weight: 500;
+    // color: var(--text-color);
+    padding: 12px 60px;
 }

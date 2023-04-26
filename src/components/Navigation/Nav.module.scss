@@ -334,22 +334,6 @@ $textColorDark: #ccc;
 
 /// main layout
 
-.home {
-        position: relative;
-        left: 250px;
-        height: 100vh;
-        top: 0;
-        width: calc(100% - 250px);
-        background-color: red;
-        transition: $transition05;
-
-        &--close {
-                left: 78px;
-                height: 100vh;
-                width: calc(100% - 78px);
-        }
-}
-
 .home .text {
         font-size: 30px;
         font-weight: 500;

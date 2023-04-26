@@ -113,9 +113,7 @@ const Navigation = ({setIsNavOpen, isNavOpen}: NavigationProps) => {
                     </div>
                 </div>
             </nav>
-            <section className={cx('home', { 'home--close': !isNavOpen })}>
-                <div className="text">Dashboard</div>
-            </section>
+
         </>
     )
 }
