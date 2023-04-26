@@ -27,15 +27,13 @@ const Navigation = ({setIsNavOpen, isNavOpen}: NavigationProps) => {
     }
 
     const openNav = () => {
-        setIsNavOpen(true
+        setIsNavOpen(true)
     }
 
     return (
         <>
-            <nav className={cx('sidebar', { 'sidebar--close': !openNav, 'sidebar--dark': darkMode })} >
-           
-                <i className={`bx bx-chevron-right ${cx('toggle', { 'toggle--rotate': !openNav })}`} onClick={toggleClickHandler}></i>
-          
+            <nav className={cx('sidebar', { 'sidebar--close': !isNavOpen, 'sidebar--dark': darkMode })} >
+                <i className={`bx bx-chevron-right ${cx('toggle', { 'toggle--rotate': !isNavOpen })}`} onClick={toggleClickHandler}></i>
                 <header className={cx('header')}>
                     <div className={cx('header__content')}>
                         <span className={cx('header__logo')}>
@@ -115,7 +113,7 @@ const Navigation = ({setIsNavOpen, isNavOpen}: NavigationProps) => {
                     </div>
                 </div>
             </nav>
-            <section className={cx('home', { 'home--close': !openNav })}>
+            <section className={cx('home', { 'home--close': !isNavOpen })}>
                 <div className="text">Dashboard</div>
             </section>
         </>
