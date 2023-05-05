@@ -16,14 +16,17 @@ const Layout = ({ children }: LayoutProps) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(true)
 
     return (
-        <div>
+        <div className={cx('container')}>
             <Nav setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen} />
-            <main className={cx('container', 'home', { 'home--close': !isNavOpen })}>
-                {children}
-
+            <main className={cx('main-container', 'home', { 'home--close': !isNavOpen })}>
+                <div>
+                    {children}
+                </div>
             </main>
 
             <footer>
+
+                Testing
             </footer>
         </div>
     )
