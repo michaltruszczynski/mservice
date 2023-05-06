@@ -4,41 +4,25 @@ $transition05: all 0.5s ease;
     background-color: #E4E9f7;
     min-height: 100%;
     position: relative;
-    margin-left: 88px;
+    display: flex;
+    align-items: stretch;
+    
 }
 
-.main-container {
-    max-width: 1024px;
-    margin: 0 auto;
+.container-main-content {
+    flex-grow: 1;
     min-height: 100%;
-    // height: 100%;
-    // background-color: #E4E9f7;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    flex-grow: 1;
     background-color: red;
 }
 
 
 
-
-.home {
-    position: relative;
-    left: 250px;
-    // height: 100vh;
-    // height: 100%;
-    top: 0;
-    // width: calc(100% - 250px);
-
-    transition: $transition05;
-
-    &--close {
-        left: 78px;
-        // height: 100vh;
-        width: calc(100% - 78px);
-    }
-}
-
-.home .text {
-    font-size: 30px;
-    font-weight: 500;
-    // color: var(--text-color);
-    padding: 12px 60px;
-}

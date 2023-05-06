@@ -18,16 +18,14 @@ const Layout = ({ children }: LayoutProps) => {
     return (
         <div className={cx('container')}>
             <Nav setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen} />
-            <main className={cx('main-container', 'home', { 'home--close': !isNavOpen })}>
-                <div>
+            <div className={cx('container-main-content')}>
+                <main className={cx('main-content')}>
                     {children}
-                </div>
-            </main>
-
-            <footer>
-
-                Testing
-            </footer>
+                </main>
+                <footer>
+                    Testing
+                </footer>
+            </div>
         </div>
     )
 
