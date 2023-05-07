@@ -43,13 +43,21 @@ $textColorDark: #ccc;
                 }
 
                 .link__text {
-                        position: relative;
+                        // position: relative;
                         z-index: -1;
                         opacity: 0;
                 }
+
+                // .link {
+                //         &:hover {
+                //                 background-color: $sidebarColor;
+                //                 color: $textColor;
+                //         }
+                // }
+
         }
 
-        &--hoover-mode{
+        &--hoover-mode {
                 position: fixed;
                 z-index: 100;
         }
@@ -201,6 +209,8 @@ $textColorDark: #ccc;
                                 color: $sidebarColor;
                         }
 
+
+
                         &__text {
                                 color: inherit;
                                 font-weight: 500;
@@ -216,6 +226,7 @@ $textColorDark: #ccc;
                                 font-size: 20px;
                                 font-weight: 400;
                                 color: inherit;
+                                padding-left: 10px;
                         }
                 }
         }
