@@ -11,8 +11,9 @@ type NavigationProps = {
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({ setIsNavOpen, isNavOpen }: NavigationProps) => {
+const Navigation = () => {
     const [darkMode, setDarkMode] = useState<boolean>(false);
+    const [isNavOpen, setIsNavOpen] = useState<boolean>(true)
     const staticOn = true;
 
     const darkModeHandler = () => {
@@ -33,9 +34,8 @@ const Navigation = ({ setIsNavOpen, isNavOpen }: NavigationProps) => {
 
     return (
         <>
-            <div className={cx({ 'static-container': staticOn })}>
-                <nav className={cx('sidebar', { 'sidebar--close': !isNavOpen, 'sidebar--dark': darkMode })} >
-
+            <div className={cx({ 'static-container': staticOn, 'sidebar--dark': darkMode, 'sidebar--light': !darkMode })}>
+                <nav className={cx('sidebar', { 'sidebar--close': !isNavOpen })} >
                     <i className={`bx bx-chevron-right ${cx('toggle', { 'toggle--rotate': !isNavOpen })}`} onClick={toggleClickHandler}></i>
                     <header className={cx('header')}>
                         <div className={cx('header__content')}>
@@ -47,7 +47,6 @@ const Navigation = ({ setIsNavOpen, isNavOpen }: NavigationProps) => {
                                 <span className={cx('header__text__heading1')}>Utility Management</span>
                             </div>
                         </div>
-
                     </header>
                     <div className={cx('menu')}>
                         <div className={cx('nav')}>
@@ -115,8 +114,6 @@ const Navigation = ({ setIsNavOpen, isNavOpen }: NavigationProps) => {
                             </ul>
                         </div>
                     </div>
-
-
                 </nav>
             </div>
         </>

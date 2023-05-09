@@ -13,11 +13,11 @@ const cx = classNames.bind(styles);
 
 const Layout = ({ children }: LayoutProps) => {
 
-    const [isNavOpen, setIsNavOpen] = useState<boolean>(true)
+    
 
     return (
         <div className={cx('container')}>
-            <Nav setIsNavOpen={setIsNavOpen} isNavOpen={isNavOpen} />
+            <Nav />
             <div className={cx('container-main-content')}>
                 <main className={cx('main-content')}>
                     {children}
