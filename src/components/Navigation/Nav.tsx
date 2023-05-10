@@ -98,14 +98,14 @@ const Navigation = () => {
                                     </a>
                                 </li>
                                 <li className={cx('mode')}>
-                                    <div className={cx('moon-sun', { 'moon-sun--hide': !openNav })}>
+                                    <div className={cx('moon-sun', { 'moon-sun--hide': !isNavOpen })}>
                                         <i className={`bx bx-moon ${cx('icon-mode', { 'moon': darkMode })}`}></i>
                                         <i className={`bx bx-sun ${cx('icon-mode', { 'sun': !darkMode })}`}></i>
                                     </div>
-                                    <span className={cx('mode__text', { 'mode__text--hide': !openNav })}>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
-                                    <div className={cx('toggle-switch', { 'toggle-switch--left': !openNav })}>
-                                        <label className={cx('toggle-switch__label')} htmlFor="ts">
-                                            <input type="checkbox" className={cx('toggle-switch__checkbox')} name="ts" id="ts" checked={darkMode} onChange={darkModeHandler} />
+                                    <span className={cx('mode__text', { 'mode__text--hide': !isNavOpen })}>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                                    <div className={cx('toggle-switch', { 'toggle-switch--left': !isNavOpen })}>
+                                        <label className={cx('toggle-switch__label')} htmlFor="toggleswitch">
+                                            <input type="checkbox" className={cx('toggle-switch__checkbox')} name="toggleswitch" id="toggleswitch" checked={darkMode} onChange={darkModeHandler} />
                                             <span className={cx('toggle-switch__button')} />
                                         </label>
                                     </div>

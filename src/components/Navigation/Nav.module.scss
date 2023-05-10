@@ -52,6 +52,10 @@
                 .bottom .link:hover {
                         color: var(--textColor); 
                 }
+
+                .toggle {
+                        color: var(--textColor);
+                }
         }
 
         &--light {
@@ -61,28 +65,27 @@
                 --primaryColorLight: #{$primaryColorLight};
                 --toggleColor: #{$toggleColor};
         }
+}
 
-        .toggle {
-                position: absolute;
-                top: 90px;
-                right: -15px;
-                transform: translateY(-50%) rotate(180deg);
-                height: 28px;
-                width: 28px;
-                background-color: var(--primaryColor);
-                color: var(--sidebarColor);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                
-                font-size: 22px;
-                transition: transform $transition05;
-                cursor: pointer;
+.toggle {
+        position: absolute;
+        top: 90px;
+        right: -15px;
+        transform: translateY(-50%) rotate(180deg);
+        height: 28px;
+        width: 28px;
+        background-color: var(--primaryColor);
+        color: var(--sidebarColor);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 22px;
+        transition: transform $transition05;
+        cursor: pointer;
 
-                &--rotate {
-                        transform: translateY(-50%);
-                }
+        &--rotate {
+                transform: translateY(-50%);
         }
 }
 
@@ -213,6 +216,7 @@
         margin-top: 10px;
         border-radius: 6px;
         background-color: var(--primaryColorLight);
+        transition: $transition03;
         color: var(--textColor);
         display: flex;
         align-items: center;
@@ -256,10 +260,12 @@
                 white-space: nowrap;
                 color: inherit;
 
-                &--hide {
-                        opacity: 0;
-                        transition: $transition03;
-                }
+                
+        }
+
+        &__text--hide {
+                opacity: 0;
+                transition: $transition03;
         }
 }
 
@@ -271,8 +277,9 @@
         right: 0;
 
         &--left {
-                transition: $transition05;
-                position: absolute;
+                // transition: $transition05;
+                // position: absolute;
+                right: 5px;
         }
 
         &__checkbox {
