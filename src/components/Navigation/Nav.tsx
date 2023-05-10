@@ -34,8 +34,8 @@ const Navigation = () => {
 
     return (
         <>
-            <div className={cx({ 'static-container': staticOn, 'sidebar--dark': darkMode, 'sidebar--light': !darkMode })}>
-                <nav className={cx('sidebar', { 'sidebar--close': !isNavOpen })} >
+            <div className={cx({ 'static-container': staticOn })}>
+                <nav className={cx('sidebar', { 'sidebar--close': !isNavOpen, 'sidebar--dark': darkMode, 'sidebar--light': !darkMode })} >
                     <i className={`bx bx-chevron-right ${cx('toggle', { 'toggle--rotate': !isNavOpen })}`} onClick={toggleClickHandler}></i>
                     <header className={cx('header')}>
                         <div className={cx('header__content')}>

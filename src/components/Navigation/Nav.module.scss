@@ -1,21 +1,4 @@
-$bodyColor: #e4e9f7;
-$sidebarColor: #fff;
-$primaryColor: #695cfe;
-$primaryColorLight: #f6f5ff;
-$toggleColor: #ddd;
-$textColor: #707070;
-
-$transition02: all 0.2s ease;
-$transition03: all 0.3s ease;
-$transition04: all 0.4s ease;
-$transition05: all 0.5s ease;
-
-$bodyColorDark: #18191a;
-$sidebarColorDark: #242526;
-$primaryColorDark: #3a3b3c;
-$primaryColorLightDark: #3a3b3c;
-$toggleColorDark: #fff;
-$textColorDark: #ccc;
+@use '../../styles/colors' as *;
 
 .static-container {
         min-width: 88px;
@@ -23,14 +6,13 @@ $textColorDark: #ccc;
 }
 
 .sidebar {
-        position: sticky;
+        position: sticky;  
         box-sizing: border-box;
         top: 0;
         left: 0;
         height: 100vh;
         width: 250px;
-        // background-color: $sidebarColor;
-        background-color: var(--bgColor);
+        background-color: var(--sidebarColor);
         transition: $transition05;
         display: flex;
         flex-direction: column;
@@ -56,6 +38,30 @@ $textColorDark: #ccc;
                 z-index: 100;
         }
 
+        &--dark {
+                --sidebarColor: #{$sidebarColorDark};
+                --primaryColor: #{$primaryColorDark};
+                --textColor: #{$textColorDark};
+                --primaryColorLight: #{$primaryColorLightDark};
+                --toggleColor: #{$toggleColorDark};
+
+                .nav .link:hover {
+                        color: var(--textColor); 
+                }
+
+                .bottom .link:hover {
+                        color: var(--textColor); 
+                }
+        }
+
+        &--light {
+                --sidebarColor: #{$sidebarColor};
+                --primaryColor: #{$primaryColor};
+                --textColor: #{$textColor};
+                --primaryColorLight: #{$primaryColorLight};
+                --toggleColor: #{$toggleColor};
+        }
+
         .toggle {
                 position: absolute;
                 top: 90px;
@@ -63,12 +69,13 @@ $textColorDark: #ccc;
                 transform: translateY(-50%) rotate(180deg);
                 height: 28px;
                 width: 28px;
-                background-color: $primaryColor;
+                background-color: var(--primaryColor);
+                color: var(--sidebarColor);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 50%;
-                color: $sidebarColor;
+                
                 font-size: 22px;
                 transition: transform $transition05;
                 cursor: pointer;
@@ -76,24 +83,6 @@ $textColorDark: #ccc;
                 &--rotate {
                         transform: translateY(-50%);
                 }
-
-                &--dark {
-                        background-color: $primaryColorDark;
-                        color: $sidebarColorDark;
-                }
-        }
-
-        &--dark {
-                // background-color: $sidebarColorDark;
-                --bgColor: $sidebarColorDark;
-                // $sidebarColor: $sidebarColorDark;
-                // padding: 10px 14px;
-                // background-color: $sidebarColor; 
-                transition: $transition05;
-        }
-
-        &--light {
-                --bgColor: $sidebarColor;
         }
 }
 
@@ -124,7 +113,7 @@ $textColorDark: #ccc;
                 position: relative;
                 font-weight: 500;
                 font-size: 1rem;
-                color: $textColor;
+                color: var(--textColor);
                 transition: $transition03;
                 white-space: nowrap;
                 opacity: 1;
@@ -184,15 +173,11 @@ $textColorDark: #ccc;
                         text-decoration: none;
                         border-radius: 6px;
                         transition: $transition03;
-                        color: $textColor;
-
-                        &--dark {
-                                color: $textColor;
-                        }
+                        color: var(--textColor);
 
                         &:hover {
-                                background-color: $primaryColor;
-                                color: $sidebarColor;
+                                background-color: var(--primaryColor);
+                                color: var(--sidebarColor);
                         }
 
                         &__text {
@@ -221,18 +206,14 @@ $textColorDark: #ccc;
                 list-style: none;
                 color: $textColor;
         }
-
-        &__dark {
-                color: green; // new color
-        }
 }
 
 .mode {
         position: relative;
         margin-top: 10px;
         border-radius: 6px;
-        background-color: $primaryColorLight;
-        color: $textColor;
+        background-color: var(--primaryColorLight);
+        color: var(--textColor);
         display: flex;
         align-items: center;
 
@@ -320,7 +301,7 @@ $textColorDark: #ccc;
                 height: 22px;
                 width: 44px;
                 border-radius: 25px;
-                background-color: $toggleColor;
+                background-color: var(--toggleColor);
                 transition: $transition05;
 
                 &:before {
@@ -332,7 +313,7 @@ $textColorDark: #ccc;
                         top: 50%;
                         left: 5px;
                         transform: translateY(-50%);
-                        background-color: $sidebarColor;
+                        background-color: var(--sidebarColor);
                         transition: $transition03;
                 }
         }
