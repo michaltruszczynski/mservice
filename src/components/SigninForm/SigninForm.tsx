@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
-import styles from './SigninForm.module.scss';
+import classNames from 'classnames/bind';
+
 import { useForm, useWatch, FormProvider, SubmitHandler } from 'react-hook-form';
 import { z, ZodType } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Input from '../form/Input/Input';
+
+import styles from './SigninForm.module.scss';
+const cx = classNames.bind(styles);
+
 
 type FormData = {
     firstName: string;
@@ -40,19 +45,19 @@ const SigninForm = () => {
     }
 
     return (
+        <div className={cx('form-container')}>
+            <FormProvider {...methods}>
+                <form className={styles['form']} onSubmit={handleSubmit(submitHandler)}>
 
-        <FormProvider {...methods}>
-            <form className={styles['form']} onSubmit={handleSubmit(submitHandler)}>
-
-                <Input type={"firstName"} name={"firstName"} label={"First Name"} />
-                {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
-                <Input type={"email"} name={"email"} label={"Email"} />
-                <Input type={"password"} name={"password"} label={"Password"} />
-                <Input type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
-                <input type="submit" value={'submit'} />
-            </form>
-        </FormProvider>
-
+                    <Input type={"firstName"} name={"firstName"} label={"First Name"} />
+                    {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
+                    <Input type={"email"} name={"email"} label={"Email"} />
+                    <Input type={"password"} name={"password"} label={"Password"} />
+                    <Input type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
+                    <input type="submit" value={'submit'} />
+                </form>
+            </FormProvider>
+        </div>
     )
 }
 
