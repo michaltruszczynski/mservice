@@ -16,13 +16,16 @@
         align-items: center;
         justify-content: center;
         line-height: 1.5;
-        border: 1px solid $inputBorderColor;
+        border: 1px solid $pickedcolor;
         border-radius: 8px;
         width: 100%;
         max-width: 680px;
         margin: 0 auto;
         padding: 1rem;
-        box-shadow: 0 7px 15px rgba(0,0,0,.251);
+
+        // box-shadow: 0 7px 15px rgba(0,0,0,.251);
+        box-shadow: 0 7px 14px 0px darken($pickedcolor, 20%);
+        background-color: #fff;
         &__field {
                 display: flex;
                 flex-direction: column;
