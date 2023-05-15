@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useForm, useFormContext, useFormState, useWatch } from 'react-hook-form';
+import { useFormContext, useFormState, useWatch } from 'react-hook-form';
 
 import styles from './ConfirmPasswordInput.module.scss';
 
@@ -10,17 +10,18 @@ type InputPropsType = {
 }
 
 const ConfirmPasswordInput = ({ type, name, label }: InputPropsType) => {
-        const { register, control, watch, trigger } = useFormContext();
+        const { register, control, watch, trigger, getValues } = useFormContext();
         const { isDirty, isValid, errors } = useFormState({ name, control })
-        // const errors = useWatch({name})
-        // console.log(errors)
+
         console.log(isDirty, errors, isValid)
 
         const password = watch('password')
-
+       
         useEffect(() => {
                 trigger('confirmPassword')
-        }, [password])
+        }, [password]);
+
+
         return (
                 <div className={styles['field']} >
                         <label className={styles['field__label']} htmlFor={name}>{label}: </label>

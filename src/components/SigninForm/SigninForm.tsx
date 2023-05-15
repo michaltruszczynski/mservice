@@ -11,7 +11,7 @@ import ConfirmPasswordInput from '../form/ConfirmPasswordInput/ConfirmPasswordIn
 const cx = classNames.bind(styles);
 
 
-type FormData = {
+export type FormData = {
     firstName: string;
     email: string;
     password: string;
