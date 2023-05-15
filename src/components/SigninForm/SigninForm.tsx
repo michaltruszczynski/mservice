@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 
 import { useForm, useWatch, FormProvider, SubmitHandler } from 'react-hook-form';
@@ -8,12 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Input from '../form/Input/Input';
 
 import styles from './SigninForm.module.scss';
+import ConfirmPasswordInput from '../form/ConfirmPasswordInput/ConfirmPasswordInput';
 const cx = classNames.bind(styles);
 
 
 type FormData = {
     firstName: string;
-    lastName: string;
     email: string;
     password: string;
     confirmPassword: string;
@@ -22,10 +21,12 @@ type FormData = {
 const SigninForm = () => {
     const schema: ZodType<FormData> = z.object({
         firstName: z.string().min(2).max(15),
-        lastName: z.string().min(2).max(15),
         email: z.string().email(),
-        password: z.string(),
-        confirmPassword: z.string()
+        password: z.string().min(4),
+        confirmPassword: z.string(),
+    }).refine((data) => data.password === data.confirmPassword, {
+        path: ["confirmPassword"],
+        message: "Password doesn't match.",
     });
 
     const methods = useForm<FormData>({
@@ -35,10 +36,11 @@ const SigninForm = () => {
             password: "",
             confirmPassword: ""
         },
+        mode: 'onChange',
         resolver: zodResolver(schema)
     });
 
-    const { handleSubmit } = methods;
+    const { handleSubmit, watch, setValue } = methods;
 
     const submitHandler: SubmitHandler<FormData> = (data) => {
         console.log(data);
@@ -53,7 +55,7 @@ const SigninForm = () => {
                     {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
                     <Input type={"email"} name={"email"} label={"Email"} />
                     <Input type={"password"} name={"password"} label={"Password"} />
-                    <Input type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
+                    <ConfirmPasswordInput type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
                     <input type="submit" value={'submit'} />
                 </form>
             </FormProvider>
