@@ -22,7 +22,16 @@ const SigninForm = () => {
     const schema: ZodType<FormData> = z.object({
         firstName: z.string().min(2).max(15),
         email: z.string().email(),
-        password: z.string().min(4),
+        password: z
+            .string()
+            .regex(new RegExp(".*[A-Z].*"), "One uppercase character")
+            // .regex(new RegExp(".*[a-z].*"), "One lowercase character")
+            .regex(new RegExp(".*\\d.*"), "One number")
+            .regex(
+                new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
+                "One special character"
+            )
+            .min(4, "Must be at least 4 characters in length"),
         confirmPassword: z.string(),
     }).refine((data) => data.password === data.confirmPassword, {
         path: ["confirmPassword"],
@@ -37,6 +46,7 @@ const SigninForm = () => {
             confirmPassword: ""
         },
         mode: 'onChange',
+        criteriaMode: 'all',
         resolver: zodResolver(schema)
     });
 
