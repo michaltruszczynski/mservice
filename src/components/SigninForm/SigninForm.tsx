@@ -18,24 +18,30 @@ export type FormData = {
     confirmPassword: string;
 };
 
+export const PassworderrorMsg = {
+    oneCapitalLetter: "Contains at least 1 capital letter.",
+    oneNumber: "Contains at least 1 capital number.",
+    oneSpecialChar: "Contains at least 1 special character.",
+    minCharNumber: "4 characters minimum."
+}
+
 const SigninForm = () => {
     const schema: ZodType<FormData> = z.object({
         firstName: z.string().min(2).max(15),
         email: z.string().email(),
         password: z
             .string()
-            .regex(new RegExp(".*[A-Z].*"), "One uppercase character")
-            // .regex(new RegExp(".*[a-z].*"), "One lowercase character")
-            .regex(new RegExp(".*\\d.*"), "One number")
+            .regex(new RegExp(".*[A-Z].*"), PassworderrorMsg.oneCapitalLetter)
+            .regex(new RegExp(".*\\d.*"), PassworderrorMsg.oneNumber)
             .regex(
                 new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
-                "One special character"
+                PassworderrorMsg.oneSpecialChar
             )
-            .min(4, "Must be at least 4 characters in length"),
+            .min(4, PassworderrorMsg.minCharNumber),
         confirmPassword: z.string(),
     }).refine((data) => data.password === data.confirmPassword, {
         path: ["confirmPassword"],
-        message: "Password doesn't match.",
+        message: "Passwords don't match.",
     });
 
     const methods = useForm<FormData>({
@@ -64,7 +70,7 @@ const SigninForm = () => {
                     <Input type={"firstName"} name={"firstName"} label={"First Name"} />
                     {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
                     <Input type={"email"} name={"email"} label={"Email"} />
-                    <Input type={"password"} name={"password"} label={"Password"} />
+                    <Input type={"password"} name={"password"} label={"Password"} multipleErrorMsgArr={PassworderrorMsg} />
                     <ConfirmPasswordInput type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
                     <input type="submit" value={'submit'} />
                 </form>
