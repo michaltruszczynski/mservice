@@ -15,20 +15,22 @@ type PropsType = {
 }
 
 function ErrorField({ errors, isDirty, name, isValid, multipleErrorMsgArr }: PropsType) {
+
     console.log(errors)
+
     const getErrorMessages = (errors: any, multipleErrorMsgArr: { [key: string]: string }, name: string) => {
         if (!multipleErrorMsgArr && errors) {
-            <p className={cx('error', {'error--hiiden': isValid})}>{errors[name].message}</p>
+            <p className={cx('error', 'error--red', { 'error--hiiden': isValid })}>{errors[name].message}</p>
         }
-        
+
         if (!multipleErrorMsgArr) {
             Object.entries(multipleErrorMsgArr).map((key, message) => {
                 return (
-                    <p className={cx('error', {'error--hiiden': isValid})}></p>
+                    <p className={cx('error', { 'error--hiiden': isValid })}></p>
                 )
             })
         }
-        
+
         if (!errors?.name) return null;
         const errorArray = Object.values(errors[name].types);
         errorArray.flat();
