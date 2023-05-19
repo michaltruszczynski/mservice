@@ -18,9 +18,11 @@ export type FormData = {
     confirmPassword: string;
 };
 
-export const PassworderrorMsg = {
+export type FormDataKeys = keyof FormData;
+
+export const PasswordErrorMsg = {
     oneCapitalLetter: "Contains at least 1 capital letter.",
-    oneNumber: "Contains at least 1 capital number.",
+    oneNumber: "Contains at least 1 number.",
     oneSpecialChar: "Contains at least 1 special character.",
     minCharNumber: "4 characters minimum."
 }
@@ -31,13 +33,13 @@ const SigninForm = () => {
         email: z.string().email(),
         password: z
             .string()
-            .regex(new RegExp(".*[A-Z].*"), PassworderrorMsg.oneCapitalLetter)
-            .regex(new RegExp(".*\\d.*"), PassworderrorMsg.oneNumber)
+            .regex(new RegExp(".*[A-Z].*"), PasswordErrorMsg.oneCapitalLetter)
+            .regex(new RegExp(".*\\d.*"), PasswordErrorMsg.oneNumber)
             .regex(
                 new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
-                PassworderrorMsg.oneSpecialChar
+                PasswordErrorMsg.oneSpecialChar
             )
-            .min(4, PassworderrorMsg.minCharNumber),
+            .min(4, PasswordErrorMsg.minCharNumber),
         confirmPassword: z.string(),
     }).refine((data) => data.password === data.confirmPassword, {
         path: ["confirmPassword"],
@@ -70,7 +72,7 @@ const SigninForm = () => {
                     <Input type={"firstName"} name={"firstName"} label={"First Name"} />
                     {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
                     <Input type={"email"} name={"email"} label={"Email"} />
-                    <Input type={"password"} name={"password"} label={"Password"} multipleErrorMsgArr={PassworderrorMsg} />
+                    <Input type={"password"} name={"password"} label={"Password"} multipleErrorMsgArr={PasswordErrorMsg} />
                     <ConfirmPasswordInput type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
                     <input type="submit" value={'submit'} />
                 </form>

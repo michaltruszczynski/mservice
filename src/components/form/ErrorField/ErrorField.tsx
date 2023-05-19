@@ -1,55 +1,69 @@
+import { useFormContext, useFormState, FieldErrors } from 'react-hook-form';
 import classNames from 'classnames/bind';
 
+import { FormData, FormDataKeys } from '../../SigninForm/SigninForm'; 
 import styles from './ErrorField.module.scss';
 
 const cx = classNames.bind(styles);
 
+// type PropsType = {
+//     errors: any;
+//     name: string;
+//     isDirty: boolean;
+//     isValid: boolean;
+//     multipleErrorMsgArr: {
+//         [key: string]: string
+//     } | undefined;
+// }
+
 type PropsType = {
-    errors: any;
-    name: string;
-    isDirty: boolean;
-    isValid: boolean;
+    name: FormDataKeys;
     multipleErrorMsgArr: {
         [key: string]: string
-    };
+    } | undefined;
 }
 
-function ErrorField({ errors, isDirty, name, isValid, multipleErrorMsgArr }: PropsType) {
+// function ErrorField({ errors, isDirty, name, isValid, multipleErrorMsgArr }: PropsType) {
 
+function ErrorField({ name, multipleErrorMsgArr }: PropsType) {
+
+    
+    const { control } = useFormContext<FormData>();
+    const { isDirty, isValid, errors, touchedFields } = useFormState<FormData>({ name, control })
     console.log(errors)
 
-    const getErrorMessages = (errors: any, multipleErrorMsgArr: { [key: string]: string }, name: string) => {
-        if (!multipleErrorMsgArr && errors) {
-            <p className={cx('error', 'error--red', { 'error--hiiden': isValid })}>{errors[name].message}</p>
+    
+    const getErrorMessages = (errors: any, multipleErrorMsgArr: { [key: string]: string } | undefined, name: string) => {
+        if (!multipleErrorMsgArr && errors?.[name]) {
+            return <p className={cx('error', 'error--red', { 'error--hidden': isValid })}>{errors[name].message}</p>
         }
 
-        if (!multipleErrorMsgArr) {
-            Object.entries(multipleErrorMsgArr).map((key, message) => {
+        if (multipleErrorMsgArr) {
+            const errorArray = errors[name] ? Object.values(errors[name].types) : [];
+            const errorArrayFlat = errorArray.flat();
+
+            return Object.entries(multipleErrorMsgArr).map(([key, message]) => {
+                console.log(key, message)
+                const isErrorOn = errorArrayFlat.includes(message)
+                console.log(isErrorOn)
                 return (
-                    <p className={cx('error', { 'error--hiiden': isValid })}></p>
+                    <p key={key} className={cx('error', { 'error--hidden': isValid, 'error--green': !isErrorOn, 'error--red': isErrorOn })}>{message}</p>
                 )
             })
         }
 
-        if (!errors?.name) return null;
-        const errorArray = Object.values(errors[name].types);
-        errorArray.flat();
-
-        if (multipleErrorMsgArr) {
-            // multipleErrorMsgArr.map(message)
-        }
+        return null;
 
     }
 
-    // const getErrorMessage;
+    const errorsList = getErrorMessages(errors, multipleErrorMsgArr, name);
 
-
-    return (<>
-
-        {
-            errors?.[name] && isDirty ? <p className={styles['error']}></p> : <p className={[styles['field__error'], styles['field__error--hidden']].join(' ')}>No error</p>
-
-        }</>)
+    // getErrorMessages(errors, multipleErrorMsgArr, name);
+    return <>{ isDirty ? 
+        
+        errorsList : <p className={cx('error', 
+         { 'error--hidden': true })}></p> }</>;
+    // return null
 }
 
 export default ErrorField;
