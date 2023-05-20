@@ -21,24 +21,27 @@ const Input = ({ type, name, label, multipleErrorMsgArr }: InputPropsType) => {
         const { register, control } = useFormContext<FormData>();
         const { isDirty, isValid, errors, touchedFields } = useFormState<FormData>({ name, control })
 
-        type x = typeof touchedFields;
         console.log(name, ': ', isDirty, isValid, errors, touchedFields)
-        const inputErrors: FieldErrors<FormData> = errors;
+        // const inputErrors: FieldErrors<FormData> = errors;
 
-        const checkIfInputTouched = (touchedFields: Partial<Readonly<FormData>>, name: FormDataKeys) => {
+
+        const checkIfInputTouched = <T,>(touchedFields: Partial<Readonly<{[Property in keyof T]: boolean}>>, name: keyof T) => {
                 if (!touchedFields[name]) return false
-                return touchedFields[name]
-        }
+                return Boolean(touchedFields[name]);
+        };
+
+        const isTouched = checkIfInputTouched<FormData>(touchedFields, name)
 
         return (
                 <div className={styles['field']} >
                         <label className={styles['field__label']} htmlFor={name}>{label}: </label>
                         <input className={styles['field__input']} id={name} type={type} {...register(name)} />
                         <ErrorField
-                                // isDirty={isDirty}
-                                // isValid={isValid}
+                                isDirty={isDirty}
+                                isValid={isValid}
+                                isTouched={isTouched}
                                 name={name}
-                                // errors={errors}
+                                errors={errors}
                                 multipleErrorMsgArr={multipleErrorMsgArr} />
                 </div>
         )

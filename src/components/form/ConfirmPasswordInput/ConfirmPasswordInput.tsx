@@ -14,6 +14,7 @@ const ConfirmPasswordInput = ({ type, name, label }: InputPropsType) => {
         const { isDirty, isValid, errors } = useFormState({ name, control })
 
         // console.log(isDirty, errors, isValid)
+        console.log('confirm password: ', errors)
 
         const password = watch('password')
        

@@ -41,7 +41,9 @@ const SigninForm = () => {
             )
             .min(4, PasswordErrorMsg.minCharNumber),
         confirmPassword: z.string(),
-    }).refine((data) => data.password === data.confirmPassword, {
+    }).refine((data) => {
+        return data.password === data.confirmPassword && data.confirmPassword
+    }, {
         path: ["confirmPassword"],
         message: "Passwords don't match.",
     });

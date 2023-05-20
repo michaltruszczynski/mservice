@@ -6,40 +6,29 @@ import styles from './ErrorField.module.scss';
 
 const cx = classNames.bind(styles);
 
-// type PropsType = {
-//     errors: any;
-//     name: string;
-//     isDirty: boolean;
-//     isValid: boolean;
-//     multipleErrorMsgArr: {
-//         [key: string]: string
-//     } | undefined;
-// }
-
 type PropsType = {
+    errors: FieldErrors<FormData>;
     name: FormDataKeys;
+    isDirty: boolean;
+    isValid: boolean;
+    isTouched: boolean;
     multipleErrorMsgArr: {
         [key: string]: string
     } | undefined;
 }
 
-// function ErrorField({ errors, isDirty, name, isValid, multipleErrorMsgArr }: PropsType) {
+function ErrorField({ errors, isDirty, name, isValid, isTouched, multipleErrorMsgArr }: PropsType) {
 
-function ErrorField({ name, multipleErrorMsgArr }: PropsType) {
-
-    
-    const { control } = useFormContext<FormData>();
-    const { isDirty, isValid, errors, touchedFields } = useFormState<FormData>({ name, control })
     console.log(errors)
 
     
-    const getErrorMessages = (errors: any, multipleErrorMsgArr: { [key: string]: string } | undefined, name: string) => {
+    const getErrorMessages = (errors: any, multipleErrorMsgArr: { [key: string]: string } | undefined, name: FormDataKeys) => {
         if (!multipleErrorMsgArr && errors?.[name]) {
-            return <p className={cx('error', 'error--red', { 'error--hidden': isValid })}>{errors[name].message}</p>
+            return <p className={cx('error', 'error--red', { 'error--hidden': isValid })}>{errors?.[name]?.message}</p>
         }
 
         if (multipleErrorMsgArr) {
-            const errorArray = errors[name] ? Object.values(errors[name].types) : [];
+            const errorArray = errors?.[name] ? Object.values(errors[name].types) : [];
             const errorArrayFlat = errorArray.flat();
 
             return Object.entries(multipleErrorMsgArr).map(([key, message]) => {
@@ -47,7 +36,7 @@ function ErrorField({ name, multipleErrorMsgArr }: PropsType) {
                 const isErrorOn = errorArrayFlat.includes(message)
                 console.log(isErrorOn)
                 return (
-                    <p key={key} className={cx('error', { 'error--hidden': isValid, 'error--green': !isErrorOn, 'error--red': isErrorOn })}>{message}</p>
+                    <p key={key} className={cx('error', { 'error--hidden': isValid, 'error--green': !isErrorOn, 'error--red': isErrorOn && isTouched })}>{message}</p>
                 )
             })
         }
