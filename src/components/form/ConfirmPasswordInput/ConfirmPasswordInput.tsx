@@ -11,10 +11,10 @@ type InputPropsType = {
 
 const ConfirmPasswordInput = ({ type, name, label }: InputPropsType) => {
         const { register, control, watch, trigger, getValues } = useFormContext();
-        const { isDirty, isValid, errors } = useFormState({ name, control })
+        const { isDirty, isValid, errors, touchedFields } = useFormState({ name, control })
 
         // console.log(isDirty, errors, isValid)
-        console.log('confirm password: ', errors)
+        console.log('confirm password: ', errors, touchedFields)
 
         const password = watch('password')
        

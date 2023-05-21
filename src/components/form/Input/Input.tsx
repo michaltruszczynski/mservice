@@ -22,7 +22,7 @@ const Input = ({ type, name, label, multipleErrorMsgArr }: InputPropsType) => {
         const { isDirty, isValid, errors, touchedFields } = useFormState<FormData>({ name, control })
 
         console.log(name, ': ', isDirty, isValid, errors, touchedFields)
-        // const inputErrors: FieldErrors<FormData> = errors;
+
 
 
         const checkIfInputTouched = <T,>(touchedFields: Partial<Readonly<{[Property in keyof T]: boolean}>>, name: keyof T) => {

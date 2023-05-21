@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 
 export type FormData = {
-    firstName: string;
+    name: string;
     email: string;
     password: string;
     confirmPassword: string;
@@ -29,7 +29,7 @@ export const PasswordErrorMsg = {
 
 const SigninForm = () => {
     const schema: ZodType<FormData> = z.object({
-        firstName: z.string().min(2).max(15),
+        name: z.string().min(2, {message: ''}).max(15),
         email: z.string().email(),
         password: z
             .string()
@@ -42,7 +42,7 @@ const SigninForm = () => {
             .min(4, PasswordErrorMsg.minCharNumber),
         confirmPassword: z.string(),
     }).refine((data) => {
-        return data.password === data.confirmPassword && data.confirmPassword
+        return data.password === data.confirmPassword && data.confirmPassword !== ''
     }, {
         path: ["confirmPassword"],
         message: "Passwords don't match.",
@@ -50,7 +50,7 @@ const SigninForm = () => {
 
     const methods = useForm<FormData>({
         defaultValues: {
-            firstName: "",
+            name: "",
             email: "",
             password: "",
             confirmPassword: ""
@@ -71,8 +71,7 @@ const SigninForm = () => {
             <FormProvider {...methods}>
                 <form className={styles['form']} onSubmit={handleSubmit(submitHandler)}>
 
-                    <Input type={"firstName"} name={"firstName"} label={"First Name"} />
-                    {/* <Input type={"lastName"} name={"lastName"} label={"Last Name"} /> */}
+                    <Input type={"name"} name={"name"} label={"Name"} />
                     <Input type={"email"} name={"email"} label={"Email"} />
                     <Input type={"password"} name={"password"} label={"Password"} multipleErrorMsgArr={PasswordErrorMsg} />
                     <ConfirmPasswordInput type={"confirmPassword"} name={"confirmPassword"} label={"Confirm Password"} />
