@@ -1,3 +1,5 @@
+@use '../../../styles/colors' as *;
+
 .field {
         display: flex;
         flex-direction: column;
@@ -9,7 +11,7 @@
                 font-weight: 600;
                 padding: 10px 0;
         }
-        
+
         &__input {
                 width: 100%;
                 box-sizing: border-box;
@@ -30,15 +32,18 @@
                 &::placeholder {
                         color: #bbbbbb;
                 }
-        }
 
-        &__error {
-                // padding-top: 10px;
-                color: #d50000;
-                font-size: 0.9em;
+                &--error {
+                        box-shadow: 0 0 4px 0 $inputErrorBorderColor;
+                        color: $inputErrorFontColor;
+                        background-color: $inputErrorBackground;
+                        border-color: $inputErrorBorderColor;
 
-                &--hidden {
-                        visibility: hidden;
+                        &::placeholder {
+                                color: $inputErrorPlaceholderFontColor;
+                        }
                 }
         }
+
+
 }

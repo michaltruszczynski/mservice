@@ -1,7 +1,7 @@
 import { useFormContext, useFormState, FieldErrors } from 'react-hook-form';
 import classNames from 'classnames/bind';
 
-import { FormData, FormDataKeys } from '../../SigninForm/SigninForm'; 
+import { FormData, FormDataKeys } from '../../SigninForm/SigninForm';
 import styles from './ErrorField.module.scss';
 
 const cx = classNames.bind(styles);
@@ -19,9 +19,6 @@ type PropsType = {
 
 function ErrorField({ errors, isDirty, name, isValid, isTouched, multipleErrorMsgArr }: PropsType) {
 
-    console.log(errors)
-
-    
     const getErrorMessages = (errors: any, multipleErrorMsgArr: { [key: string]: string } | undefined, name: FormDataKeys) => {
         if (!multipleErrorMsgArr && errors?.[name]) {
             return <p className={cx('error', 'error--red', { 'error--hidden': isValid })}>{errors?.[name]?.message}</p>
@@ -48,10 +45,10 @@ function ErrorField({ errors, isDirty, name, isValid, isTouched, multipleErrorMs
     const errorsList = getErrorMessages(errors, multipleErrorMsgArr, name);
 
     // getErrorMessages(errors, multipleErrorMsgArr, name);
-    return <>{ isDirty ? 
-        
-        errorsList : <p className={cx('error', 
-         { 'error--hidden': true })}></p> }</>;
+    return <>{isDirty ?
+
+        errorsList : <p className={cx('error',
+            { 'error--hidden': true })}></p>}</>;
     // return null
 }
 

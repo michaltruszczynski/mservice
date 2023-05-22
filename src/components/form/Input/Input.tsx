@@ -19,11 +19,7 @@ import ErrorField from '../ErrorField/ErrorField';
 
 const Input = ({ type, name, label, multipleErrorMsgArr }: InputPropsType) => {
         const { register, control } = useFormContext<FormData>();
-        const { isDirty, isValid, errors, touchedFields } = useFormState<FormData>({ name, control })
-
-        console.log(name, ': ', isDirty, isValid, errors, touchedFields)
-
-
+        const { isDirty, isValid, errors, touchedFields } = useFormState<FormData>({ name, control });
 
         const checkIfInputTouched = <T,>(touchedFields: Partial<Readonly<{[Property in keyof T]: boolean}>>, name: keyof T) => {
                 if (!touchedFields[name]) return false
