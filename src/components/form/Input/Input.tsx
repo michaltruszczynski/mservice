@@ -21,13 +21,13 @@ const Input = ({ type, name, label, multipleErrorMsgArr }: InputPropsType) => {
         const { register, control } = useFormContext<FormData>();
         const { isDirty, isValid, errors, touchedFields } = useFormState<FormData>({ name, control });
 
-        const checkIfInputTouched = <T,>(touchedFields: Partial<Readonly<{[Property in keyof T]: boolean}>>, name: keyof T) => {
+        const checkIfInputTouched = <T,>(touchedFields: Partial<Readonly<{ [Property in keyof T]: boolean }>>, name: keyof T) => {
                 if (!touchedFields[name]) return false
                 return Boolean(touchedFields[name]);
         };
 
         const isTouched = checkIfInputTouched<FormData>(touchedFields, name)
-
+        console.log(isTouched)
         return (
                 <div className={styles['field']} >
                         <label className={styles['field__label']} htmlFor={name}>{label}: </label>
