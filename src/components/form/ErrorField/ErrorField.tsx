@@ -45,7 +45,10 @@ function ErrorField({ errors, isDirty, name, isValid, isTouched, multipleErrorMs
     const errorsList = getErrorMessages(errors, multipleErrorMsgArr, name);
 
     // getErrorMessages(errors, multipleErrorMsgArr, name);
-    return <>{isDirty ?
+    //isTouched zmienia się gdy juz nie jest onFocus, sprawdzic czy jest focus state
+    console.log(name, 'isDirty', isDirty)
+    console.log(name, 'isTouched', isTouched)
+    return <>{isTouched ?
 
         errorsList : <p className={cx('error',
             { 'error--hidden': true })}></p>}</>;
