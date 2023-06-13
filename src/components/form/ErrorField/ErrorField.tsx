@@ -31,7 +31,7 @@ function ErrorField({ errors, isDirty, name, isValid, isTouched, multipleErrorMs
             return Object.entries(multipleErrorMsgArr).map(([key, message]) => {
                 console.log(key, message)
                 const isErrorOn = errorArrayFlat.includes(message)
-                console.log(isErrorOn)
+                // console.log(isErrorOn)
                 return (
                     <p key={key} className={cx('error', { 'error--hidden': isValid, 'error--green': !isErrorOn, 'error--red': isErrorOn && isTouched })}>{message}</p>
                 )
