@@ -29,7 +29,7 @@ function ErrorField({ errors, isDirty, name, isValid, isTouched, multipleErrorMs
             const errorArrayFlat = errorArray.flat();
 
             return Object.entries(multipleErrorMsgArr).map(([key, message]) => {
-                console.log(key, message)
+                // console.log(key, message)
                 const isErrorOn = errorArrayFlat.includes(message)
                 // console.log(isErrorOn)
                 return (
