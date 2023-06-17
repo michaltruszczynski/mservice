@@ -65,7 +65,7 @@ const SigninForm = () => {
     const submitHandler: SubmitHandler<FormData> = (data) => {
         console.log(data);
     }
-
+// check onFocus state
     return (
         <div className={cx('form-container')}>
             <FormProvider {...methods}>
