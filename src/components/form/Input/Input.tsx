@@ -27,7 +27,7 @@ const Input = ({ type, name, label, multipleErrorMsgArr }: InputPropsType) => {
         };
 
         const isTouched = checkIfInputTouched<FormData>(touchedFields, name)
-        // console.log(isTouched)
+        console.log(isTouched)
         console.log(errors)
         return (
                 <div className={styles['field']} >
