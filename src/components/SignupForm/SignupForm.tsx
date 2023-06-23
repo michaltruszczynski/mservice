@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from './SigninForm.module.scss';
+import styles from './SignupForm.module.scss';
 import { useForm, useWatch, FormProvider, SubmitHandler } from 'react-hook-form';
 import { z, ZodType } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
