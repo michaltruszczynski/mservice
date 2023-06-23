@@ -1,11 +1,11 @@
 import Layout from './components/Layout/Layout'
-import SigninForm from './components/SigninForm/SigninForm'
+import SignupForm from './components/SignupForm/SignupForm'
 
 function App() {
 
   return (
     <Layout>
-      <SigninForm />
+      <SignupForm />
       {/* <SigninForm /> */}
     </Layout>
   )
