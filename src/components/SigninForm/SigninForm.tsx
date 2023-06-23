@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import styles from './SignupForm.module.scss';
+
 import { useForm, useWatch, FormProvider, SubmitHandler } from 'react-hook-form';
 import { z, ZodType } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Input from '../form/Input/Input';
+
+import styles from './SigninForm.module.scss';
 
 type FormData = {
     firstName: string;
